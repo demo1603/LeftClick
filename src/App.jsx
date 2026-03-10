@@ -202,19 +202,7 @@ function Features() {
 }
 
 function Navbar() {
-  const navRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      ScrollTrigger.create({
-        start: 'top -80',
-        end: 99999,
-        toggleClass: { className: 'glass-nav-active', targets: navRef.current },
-      });
-    });
-    return () => ctx.revert();
-  }, []);
 
   return (
     <>
@@ -223,17 +211,16 @@ function Navbar() {
         LeftClick
       </div>
 
-      {/* Desktop Navbar pill */}
+      {/* Desktop Navbar */}
       <nav 
-        ref={navRef}
-        className="fixed top-6 left-1/2 -translate-x-1/2 z-[90] px-8 py-4 rounded-full transition-all duration-300 hidden lg:flex items-center gap-12 whitespace-nowrap text-off-white border border-transparent"
+        className="fixed top-6 left-1/2 -translate-x-1/2 z-[90] py-4 transition-all duration-300 hidden lg:flex items-center gap-12 whitespace-nowrap mix-blend-difference text-white pointer-events-auto"
       >
-        <div className="flex items-center gap-8 text-sm font-medium opacity-80">
+        <div className="flex items-center gap-8 text-sm font-bold uppercase tracking-widest opacity-90">
           <a href="#features" className="hover:-translate-y-px transition-transform">Methods</a>
           <a href="#philosophy" className="hover:-translate-y-px transition-transform">Philosophy</a>
           <a href="#protocol" className="hover:-translate-y-px transition-transform">Protocol</a>
         </div>
-        <button className="bg-signal-red text-white px-6 py-2.5 rounded-full text-sm font-bold magnetic-btn flex items-center gap-2">
+        <button className="border border-white text-white px-6 py-2.5 rounded-full text-sm font-bold magnetic-btn flex items-center gap-2 hover:bg-white hover:text-black transition-colors">
           Book a Growth Mapping Call <ArrowUpRight size={16} />
         </button>
       </nav>
@@ -241,9 +228,9 @@ function Navbar() {
       {/* Mobile Burger Info */}
       <button 
         onClick={() => setIsOpen(true)}
-        className="lg:hidden fixed top-6 right-6 z-[90] p-4 rounded-full bg-paper/10 backdrop-blur-md border border-white/10 text-white mix-blend-difference hover:scale-105 transition-transform"
+        className="lg:hidden fixed top-6 right-6 z-[90] p-2 text-white mix-blend-difference hover:scale-110 transition-transform pointer-events-auto"
       >
-        <Menu size={24} />
+        <Menu size={32} />
       </button>
 
       {/* Mobile Overlay Menu */}
